@@ -89,6 +89,8 @@ namespace PlayniteGameOverlay
             ViewModel.DebugVisible = settings?.DebugMode ?? false;
             ViewModel.AspectRatio = settings?.AspectRatio ?? AspectRatio.Portrait;
             ViewModel.InitializeShortcutButtons(settings);
+
+            InitAccess();
         }
 
         private void InitializeBatteryDisplay()
@@ -204,12 +206,14 @@ namespace PlayniteGameOverlay
             // Show the window
             Dispatcher.Invoke(() =>
             {
+                BuildAccessPanel();
                 this.Show();
                 // Activate the window to bring it to the foreground and set focus
                 this.Activate();
                 ForceFocusOverlay();
                 // Set focus to first button when showing overlay
                 ReturnToGameButton.Focus();
+                AnnounceOpened();
             });
 
         }

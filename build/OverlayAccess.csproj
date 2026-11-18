@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Local build file: builds the same sources as PlayniteGameOverlay.csproj with the .NET SDK,
+       so no Visual Studio targeting pack or packages.config restore is needed. -->
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+    <OutputType>Library</OutputType>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <RootNamespace>PlayniteGameOverlay</RootNamespace>
+    <AssemblyName>PlayniteGameOverlay</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>out\</OutputPath>
+    <NoWarn>$(NoWarn);CS0649;CS0169;CS0414;CS0168;CS0219;NU1701;NU1903;NU1902</NoWarn>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <PackageReference Include="PlayniteSDK" Version="6.12.0" ExcludeAssets="runtime" />
+    <PackageReference Include="System.Text.Json" Version="9.0.3" />
+    <Reference Include="System.Management" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\*.cs" />
+    <Compile Include="..\Properties\*.cs" />
+    <Compile Include="..\Access\*.cs" />
+    <ApplicationDefinition Remove="..\App.xaml" />
+    <Page Include="..\App.xaml" Link="App.xaml" />
+    <Page Include="..\OverlaySettingsView.xaml" Link="OverlaySettingsView.xaml" />
+    <Page Include="..\OverlayWindow.xaml" Link="OverlayWindow.xaml" />
+    <Page Include="..\Battery.xaml" Link="Battery.xaml" />
+    <Resource Include="..\assets\*.png" Link="assets\%(Filename)%(Extension)" />
+    <None Include="..\extension.yaml" Link="extension.yaml" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\icon.png" Link="icon.png" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\Localization\*.xaml" Link="Localization\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
